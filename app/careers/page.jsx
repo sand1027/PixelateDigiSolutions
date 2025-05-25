@@ -20,8 +20,6 @@ export default function CareersPage() {
 
   return (
     <>
-      <Header />
-
       <motion.section
         id="careers"
         className="py-20 bg-black bg-opacity-90"
@@ -189,8 +187,6 @@ export default function CareersPage() {
           </motion.div>
         </div>
       </motion.section>
-
-      <Footer />
 
       <a
         href="#careers"

@@ -41,7 +41,6 @@ export default function Home() {
         </div>
       )}
 
-      <Header />
       <Hero />
       <ServicesTeaser />
       <PortfolioHighlight />
@@ -55,7 +54,6 @@ export default function Home() {
           <ContactForm />
         </div>
       </section>
-      <Footer />
 
       <a
         href="#home"

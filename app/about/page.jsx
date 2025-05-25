@@ -13,8 +13,6 @@ export default function AboutPage() {
 
   return (
     <>
-      <Header />
-
       <motion.section
         id="about"
         className="py-20 bg-black bg-opacity-90"
@@ -185,8 +183,6 @@ export default function AboutPage() {
           </div>
         </div>
       </motion.section>
-
-      <Footer />
 
       <a
         href="#about"

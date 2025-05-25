@@ -62,13 +62,13 @@ export default function ContactForm({ isCareer = false }) {
 
   return (
     <motion.div
-      className="pixel-card p-8"
+      className="pixel-card p-6 sm:p-8 max-w-[600px] w-full mx-auto"
       variants={formVariants}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true }}
     >
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="w-full">
         <div className="mb-6">
           <label className="block text-pixel-green mb-2 font-press-start">
             Your Name
