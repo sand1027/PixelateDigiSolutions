@@ -1,3 +1,6 @@
+import Footer from "./components/Footer";
+import Header from "./components/Header";
+
 import "./globals.css";
 
 export const metadata = {
@@ -20,7 +23,10 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className="bg-pixel-dark text-white font-vt323 antialiased">
+        '
+        <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );

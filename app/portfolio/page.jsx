@@ -13,8 +13,6 @@ export default function PortfolioPage() {
 
   return (
     <>
-      <Header />
-
       <motion.section
         id="portfolio"
         className="py-20 bg-pixel-dark"
@@ -129,8 +127,6 @@ export default function PortfolioPage() {
           </motion.div>
         </div>
       </motion.section>
-
-      <Footer />
 
       <a
         href="#portfolio"

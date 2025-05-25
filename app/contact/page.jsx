@@ -1,7 +1,6 @@
 "use client";
 import Link from "next/link";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+
 import ContactForm from "../components/ContactForm";
 
 import { motion } from "framer-motion";
@@ -14,8 +13,6 @@ export default function ContactPage() {
 
   return (
     <>
-      <Header />
-
       <motion.section
         id="contact"
         className="py-20 bg-pixel-dark pixel-grid"
@@ -130,8 +127,6 @@ export default function ContactPage() {
           </div>
         </div>
       </motion.section>
-
-      <Footer />
 
       <a
         href="#contact"

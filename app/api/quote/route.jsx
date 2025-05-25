@@ -77,12 +77,11 @@ export async function POST(request) {
   try {
     const formData = await request.formData();
     const name = formData.get("name");
-    const email = formData.get("email"); // Sender’s email
-    const projectType = formData.get("projectType");
-    const details = formData.get("details");
+    const email = formData.get("email");
+    const message = formData.get("message");
 
     // Validate required fields
-    if (!name || !email || !projectType || !details) {
+    if (!name || !email || !message) {
       return NextResponse.json(
         { error: "Missing required fields" },
         { status: 400 }
@@ -100,26 +99,24 @@ export async function POST(request) {
 
     // Email to contact@pixellate.dev
     const adminHtml = getPixelTemplate({
-      title: "[ New Contact Submission ]",
+      title: "[ New Quote Request ]",
       fields: [
         { label: "Name", value: name },
         { label: "Email", value: email },
-        { label: "Project Type", value: projectType },
-        { label: "Details", value: details },
+        { label: "Message", value: message },
       ],
       footerText: "Pixellate - Crafting Pixel-Perfect Experiences",
     });
 
     const adminMailOptions = {
-      from: `"Pixellate Contact" <${process.env.EMAIL_USER}>`,
+      from: `"Pixellate Quote" <${process.env.EMAIL_USER}>`,
       to: process.env.EMAIL_TO, // e.g., contact@pixellate.dev
       replyTo: email, // Sender’s email (e.g., sender@gmail.com)
-      subject: `New Contact Submission from ${name}`,
+      subject: `New Quote Request from ${name}`,
       text: `
         Name: ${name}
         Email: ${email}
-        Project Type: ${projectType}
-        Details: ${details}
+        Message: ${message}
         ---
         Pixellate - Crafting Pixel-Perfect Experiences
       `,
@@ -128,28 +125,25 @@ export async function POST(request) {
 
     // Auto-reply to user
     const userHtml = getPixelTemplate({
-      title: "[ Thank You for Your Submission ]",
+      title: "[ Thank You for Your Quote Request ]",
       fields: [
         { label: "Hi", value: name },
         {
           label: "Message",
           value:
-            "Thank you for reaching out to Pixellate! We’ve received your contact form submission and will review it soon. Our team will get back to you within 1-2 business days.",
+            "Thank you for requesting a quote from Pixellate! We’ve received your inquiry and will respond within 1-2 business days with a tailored proposal.",
         },
-        { label: "Your Submission", value: `Project Type: ${projectType}` },
       ],
       footerText: "Pixellate - Crafting Pixel-Perfect Experiences",
     });
 
     const userMailOptions = {
-      from: `"Pixellate Contact" <${process.env.EMAIL_USER}>`,
+      from: `"Pixellate Quote" <${process.env.EMAIL_USER}>`,
       to: email, // Sender’s email (e.g., sender@gmail.com)
-      subject: "Thank You for Contacting Pixellate",
+      subject: "Thank You for Your Quote Request",
       text: `
         Hi ${name},
-        Thank you for reaching out to Pixellate! We’ve received your contact form submission and will review it soon. Our team will get back to you within 1-2 business days.
-        Your Submission:
-        Project Type: ${projectType}
+        Thank you for requesting a quote from Pixellate! We’ve received your inquiry and will respond within 1-2 business days with a tailored proposal.
         ---
         Pixellate - Crafting Pixel-Perfect Experiences
       `,
@@ -162,7 +156,7 @@ export async function POST(request) {
       transporter.sendMail(userMailOptions),
     ]);
 
-    return NextResponse.json({ message: "Email sent successfully" });
+    return NextResponse.json({ message: "Quote request sent successfully" });
   } catch (error) {
     console.error("Error sending email:", error);
     return NextResponse.json(

@@ -1,8 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export default function ProductsPage() {
   const [isLoading, setIsLoading] = useState(true);
@@ -34,14 +33,12 @@ export default function ProductsPage() {
               <span></span>
               <span></span>
             </div>
-            <p className="text-pixel-green mt-8 text-xl sm:text-2xl">
+            <p className="text-pixel-green mt-8 text-xl sm:text-2xl font-press-start">
               Loading Products...
             </p>
           </div>
         </div>
       )}
-
-      <Header />
 
       <motion.section
         id="products"
@@ -67,13 +64,13 @@ export default function ProductsPage() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
           >
-            <p className="text-base sm:text-xl md:text-2xl max-w-3xl mx-auto">
+            <p className="text-base sm:text-xl md:text-2xl max-w-3xl mx-auto font-vt323">
               Discover our innovative tools designed to empower developers and
               creators with pixel-perfect precision.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {[
               {
                 title: "Frontend Code Editor",
@@ -85,6 +82,8 @@ export default function ProductsPage() {
                   "Multi-language support",
                 ],
                 icon: "fas fa-code",
+                link: "/code-editor",
+                buttonText: "Try Code Editor",
               },
               {
                 title: "PDF Editor",
@@ -96,6 +95,21 @@ export default function ProductsPage() {
                   "Export to multiple formats",
                 ],
                 icon: "fas fa-file-pdf",
+                link: "/pdf-editor",
+                buttonText: "Edit PDF",
+              },
+              {
+                title: "PixelTalk",
+                description:
+                  "Convert text to speech with a retro pixel-art interface, featuring customizable voices and effects.",
+                features: [
+                  "Multiple voice styles",
+                  "Speed control",
+                  "Pixel-art UI",
+                ],
+                icon: "fas fa-volume-up",
+                link: "/text-to-speech",
+                buttonText: "Convert Text to Speech",
               },
             ].map((product, index) => (
               <motion.div
@@ -113,21 +127,24 @@ export default function ProductsPage() {
                 <h4 className="text-lg sm:text-2xl font-press-start mb-3 sm:mb-4 text-pixel-yellow">
                   {product.title}
                 </h4>
-                <p className="text-sm sm:text-lg mb-3 sm:mb-4">
+                <p className="text-sm sm:text-lg mb-3 sm:mb-4 font-vt323">
                   {product.description}
                 </p>
-                <ul className="text-sm sm:text-lg list-disc list-inside mx-auto max-w-xs">
+                <ul className="text-sm sm:text-lg list-disc list-inside mx-auto max-w-xs font-vt323">
                   {product.features.map((feature, i) => (
                     <li key={i}>{feature}</li>
                   ))}
                 </ul>
+                <Link href={product.link}>
+                  <button className="pixel-btn bg-pixel-purple mt-4">
+                    {product.buttonText}
+                  </button>
+                </Link>
               </motion.div>
             ))}
           </div>
         </div>
       </motion.section>
-
-      <Footer />
 
       <a
         href="#products"

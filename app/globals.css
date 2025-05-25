@@ -4,6 +4,14 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap");
 
+:root {
+  --pixel-red: #ff3c3c;
+  --pixel-blue: #3c7cff;
+  --pixel-yellow: #ffcc3c;
+  --pixel-green: #3cff7c;
+  --pixel-purple: #8a2be2;
+}
+
 /* Pixel border effect */
 .pixel-border {
   position: relative;
